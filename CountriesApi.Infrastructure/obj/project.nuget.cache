@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "RhZOV2hE4ng=",
+  "dgSpecHash": "dNf+WBUJpUs=",
   "success": true,
   "projectFilePath": "C:\\Users\\steli\\OneDrive\\Desktop\\CountriesApi\\CountriesApi.Infrastructure\\CountriesApi.Infrastructure.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\steli\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
+    "C:\\Users\\steli\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\steli\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

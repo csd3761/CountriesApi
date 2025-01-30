@@ -13,3 +13,4 @@ C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Application\obj\Debug\
 C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Application\obj\Debug\net8.0\refint\CountriesApi.Application.dll
 C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Application\obj\Debug\net8.0\CountriesApi.Application.pdb
 C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Application\obj\Debug\net8.0\ref\CountriesApi.Application.dll
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Application\obj\Debug\net8.0\CountriesApi.Application.sourcelink.json

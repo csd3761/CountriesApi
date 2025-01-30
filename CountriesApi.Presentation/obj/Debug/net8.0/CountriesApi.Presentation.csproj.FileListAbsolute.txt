@@ -38,3 +38,6 @@ C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Presentation\obj\Debug
 C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Presentation\obj\Debug\net8.0\CountriesApi.Presentation.pdb
 C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Presentation\obj\Debug\net8.0\CountriesApi.Presentation.genruntimeconfig.cache
 C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Presentation\obj\Debug\net8.0\ref\CountriesApi.Presentation.dll
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Presentation\bin\Debug\net8.0\MediatR.dll
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Presentation\bin\Debug\net8.0\MediatR.Contracts.dll
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Presentation\obj\Debug\net8.0\CountriesApi.Presentation.sourcelink.json

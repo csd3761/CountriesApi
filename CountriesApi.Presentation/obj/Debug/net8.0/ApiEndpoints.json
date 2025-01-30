@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "CountriesApi.Presentation.Controllers.SecondLargestController",
+    "Method": "Post",
+    "RelativePath": "api/SecondLargest",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "CountriesApi.Application.Features.SecondLargest.GetSecondLargestNumberQuery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "CountriesApi.Presentation.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

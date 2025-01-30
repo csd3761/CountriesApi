@@ -1,4 +1,6 @@
 
+using CountriesApi.Application.Features.SecondLargest;
+
 namespace CountriesApi.Presentation
 {
     public class Program
@@ -6,6 +8,9 @@ namespace CountriesApi.Presentation
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Add MediatR
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetSecondLargestNumberQuery).Assembly));
 
             // Add services to the container.
 
