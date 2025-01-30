@@ -1,0 +1,11 @@
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Domain\bin\Debug\net8.0\CountriesApi.Domain.deps.json
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Domain\bin\Debug\net8.0\CountriesApi.Domain.dll
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Domain\bin\Debug\net8.0\CountriesApi.Domain.pdb
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Domain\obj\Debug\net8.0\CountriesApi.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Domain\obj\Debug\net8.0\CountriesApi.Domain.AssemblyInfoInputs.cache
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Domain\obj\Debug\net8.0\CountriesApi.Domain.AssemblyInfo.cs
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Domain\obj\Debug\net8.0\CountriesApi.Domain.csproj.CoreCompileInputs.cache
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Domain\obj\Debug\net8.0\CountriesApi.Domain.dll
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Domain\obj\Debug\net8.0\refint\CountriesApi.Domain.dll
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Domain\obj\Debug\net8.0\CountriesApi.Domain.pdb
+C:\Users\steli\OneDrive\Desktop\CountriesApi\CountriesApi.Domain\obj\Debug\net8.0\ref\CountriesApi.Domain.dll
