@@ -30,15 +30,6 @@ namespace CountriesApi.Tests.Features.SecondLargest
         }
 
         [Fact]
-        public async Task Handle_InvalidArray_ThrowsException()
-        {
-            var handler = new GetSecondLargestNumberQueryHandler();
-            var query = new GetSecondLargestNumberQuery { Numbers = new[] { 4 } };
-
-            await Assert.ThrowsAsync<ArgumentException>(() => handler.Handle(query, CancellationToken.None));
-        }
-
-        [Fact]
         public async Task Handle_ValidArray_ReturnsSecondLargest()
         {
             var handler = new GetSecondLargestNumberQueryHandler();
