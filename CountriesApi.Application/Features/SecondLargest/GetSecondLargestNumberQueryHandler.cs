@@ -11,9 +11,6 @@ namespace CountriesApi.Application.Features.SecondLargest
     {
         public Task<int> Handle(GetSecondLargestNumberQuery request, CancellationToken cancellationToken)
         {
-            if (request.Numbers == null || request.Numbers.Count() < 2)
-                throw new ArgumentException("Array must have at least two elements.");
-
             var sorted = request.Numbers.OrderByDescending(x => x).ToList();
             return Task.FromResult(sorted[1]);
         }

@@ -1,6 +1,10 @@
 
+using CountriesApi.Application.Common.Behaviors;
 using CountriesApi.Application.Features.SecondLargest;
+using CountriesApi.Application.Validators;
 using CountriesApi.Presentation.Middleware;
+using FluentValidation;
+using MediatR;
 
 namespace CountriesApi.Presentation
 {
@@ -12,6 +16,12 @@ namespace CountriesApi.Presentation
 
             // Add MediatR
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetSecondLargestNumberQuery).Assembly));
+
+            // Add Validators
+            builder.Services.AddValidatorsFromAssemblyContaining<GetSecondLargestNumberQueryValidator>();
+
+            // Register Behaviors
+            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             // Add services to the container.
 
