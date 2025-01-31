@@ -5,6 +5,7 @@ using CountriesApi.Application.Validators;
 using CountriesApi.Presentation.Middleware;
 using FluentValidation;
 using MediatR;
+using Serilog;
 
 namespace CountriesApi.Presentation
 {
@@ -20,8 +21,17 @@ namespace CountriesApi.Presentation
             // Add Validators
             builder.Services.AddValidatorsFromAssemblyContaining<GetSecondLargestNumberQueryValidator>();
 
+            //Configure Serilog
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()
+                .WriteTo.Console()
+                .CreateLogger();
+
+            builder.Host.UseSerilog();
+
             // Register Behaviors
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 
             // Add services to the container.
 

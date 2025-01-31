@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CountriesApi.Presentation.Middleware
@@ -40,6 +41,23 @@ namespace CountriesApi.Presentation.Middleware
 
             switch (ex)
             {
+                case ValidationException validationEx:
+                    statusCode = (int)HttpStatusCode.BadRequest;
+                    problem = new ValidationProblemDetails
+                    {
+                        Title = "Validation Error",
+                        Detail = _environment.IsDevelopment() ? validationEx.Message : "One or more validation errors occurred",
+                        Status = statusCode,
+                        Instance = context.Request.Path,
+                        Errors = validationEx.Errors
+                            .GroupBy(e => e.PropertyName)
+                            .ToDictionary(
+                                g => g.Key,
+                                g => g.Select(e => e.ErrorMessage).ToArray()
+                            )
+                    };
+                    break;
+
                 default:
                     problem = new ProblemDetails
                     {
