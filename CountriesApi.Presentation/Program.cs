@@ -34,6 +34,10 @@ namespace CountriesApi.Presentation
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 
             // Add services to the container.
+            builder.Services.AddHttpClient("CountriesClient", client =>
+            {
+                client.BaseAddress = new Uri("https://restcountries.com/v3.1/");  // TODO Use Options Pattern to use this one instead of hardcoded uri
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
