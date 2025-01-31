@@ -1,5 +1,6 @@
 
 using CountriesApi.Application.Features.SecondLargest;
+using CountriesApi.Presentation.Middleware;
 
 namespace CountriesApi.Presentation
 {
@@ -20,6 +21,9 @@ namespace CountriesApi.Presentation
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            // Add the exception middleware
+            app.UseMiddleware<ExceptionMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
