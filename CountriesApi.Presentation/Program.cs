@@ -2,6 +2,7 @@
 using CountriesApi.Application.Common.Behaviors;
 using CountriesApi.Application.Features.SecondLargest;
 using CountriesApi.Application.Validators;
+using CountriesApi.Infrastructure.Extensions;
 using CountriesApi.Presentation.Middleware;
 using FluentValidation;
 using MediatR;
@@ -14,6 +15,8 @@ namespace CountriesApi.Presentation
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddInfrastructure(builder.Configuration);
 
             // Add MediatR
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetSecondLargestNumberQuery).Assembly));
