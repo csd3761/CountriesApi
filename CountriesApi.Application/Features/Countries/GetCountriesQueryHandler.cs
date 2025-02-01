@@ -7,23 +7,19 @@ using MediatR;
 namespace CountriesApi.Application.Features.Countries
 {
     public class GetCountriesQueryHandler(
-        IHttpClientFactory httpClientFactory
-    ) : IRequestHandler<GetCountriesQuery, List<CountryResponse>>
+    IReposistory<Country> countryRepository)
+    : IRequestHandler<GetCountriesQuery, List<CountryResponse>>
     {
-        public async Task<List<CountryResponse>> Handle(GetCountriesQuery request, CancellationToken cancellationToken)
+        public async Task<List<CountryResponse>> Handle(
+            GetCountriesQuery request,
+            CancellationToken cancellationToken)
         {
-            var client = httpClientFactory.CreateClient("CountriesClient");
-            var response = await client.GetAsync("all?fields=name,capital,borders", cancellationToken);
-
-            response.EnsureSuccessStatusCode();
-
-            var countries = await response.Content.ReadFromJsonAsync<List<RestCountryDto>>(cancellationToken);
-
+            var countries = await countryRepository.GetAllAsync(cancellationToken);
             return countries.Select(c => new CountryResponse
             {
-                CommonName = c.Name.Common,
-                Capital = c.Capital?.FirstOrDefault(),
-                Borders = c.Borders ?? new List<string>()
+                CommonName = c.CommonName,
+                Capital = c.Capital,
+                Borders = c.Borders
             }).ToList();
         }
     }

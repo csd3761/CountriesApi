@@ -12,11 +12,13 @@ using MediatR;
 namespace CountriesApi.Application.Features.Countries.Commands
 {
     public class FetchAndSaveCountriesCommandHandler(
-        IHttpClientFactory httpClientFactory,
-        IReposistory<Country> countryRepository,
-        IUnitOfWork unitOfWork) : IRequestHandler<FetchAndSaveCountriesCommand>
+    IHttpClientFactory httpClientFactory,
+    IReposistory<Country> countryRepository,
+    IUnitOfWork unitOfWork) : IRequestHandler<FetchAndSaveCountriesCommand>
     {
-        public async Task Handle(FetchAndSaveCountriesCommand request, CancellationToken cancellationToken)
+        public async Task Handle(
+            FetchAndSaveCountriesCommand request,
+            CancellationToken cancellationToken)
         {
             var client = httpClientFactory.CreateClient("CountriesClient");
             var response = await client.GetAsync("all?fields=name,capital,borders", cancellationToken);
@@ -27,10 +29,11 @@ namespace CountriesApi.Application.Features.Countries.Commands
             var countryEntities = countries.Select(c => new Country
             {
                 CommonName = c.Name.Common,
-                Capital = c.Capital?.FirstOrDefault(),
+                Capital = c.Capital?.FirstOrDefault() ?? "No Capital",
                 Borders = c.Borders ?? new List<string>()
             }).ToList();
 
+            // Save to database
             await countryRepository.AddRangeAsync(countryEntities);
             await unitOfWork.CommitAsync(cancellationToken);
         }

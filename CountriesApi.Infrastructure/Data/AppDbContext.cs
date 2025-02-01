@@ -12,12 +12,11 @@ namespace CountriesApi.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Country>()
-                .Property(c => c.Borders)
-                .HasConversion(
-                    v => JsonConvert.SerializeObject(v),
-                    v => JsonConvert.DeserializeObject<List<string>>(v) ?? new List<string>()
-                );
+            modelBuilder.Entity<Country>(entity =>
+            {
+                entity.Property(e => e.Capital)
+                    .IsRequired(false);
+            });
         }
     }
 }

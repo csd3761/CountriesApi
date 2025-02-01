@@ -16,12 +16,12 @@ namespace CountriesApi.Presentation.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetCountries()
-        {
-            var result = await _mediator.Send(new GetCountriesQuery());
-            return Ok(result);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> GetCountries()
+        //{
+        //    var result = await _mediator.Send(new GetCountriesQuery());
+        //    return Ok(result);
+        //}
 
         [HttpGet]
         public async Task<IActionResult> GetAndSaveCountriesOnDB()

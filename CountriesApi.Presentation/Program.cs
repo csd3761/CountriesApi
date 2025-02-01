@@ -3,6 +3,7 @@ using CountriesApi.Application.Common.Behaviors;
 using CountriesApi.Application.Features.SecondLargest;
 using CountriesApi.Application.Validators;
 using CountriesApi.Infrastructure.Extensions;
+using CountriesApi.Infrastructure.HealthChecks;
 using CountriesApi.Presentation.Middleware;
 using FluentValidation;
 using MediatR;
@@ -42,6 +43,9 @@ namespace CountriesApi.Presentation
                 client.BaseAddress = new Uri("https://restcountries.com/v3.1/");  // TODO Use Options Pattern to use this one instead of hardcoded uri
             });
 
+            // Add HealthChecks
+            builder.Services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("Database");
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -65,6 +69,8 @@ namespace CountriesApi.Presentation
 
 
             app.MapControllers();
+
+            app.MapHealthChecks("/health");
 
             app.Run();
         }

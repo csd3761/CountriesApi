@@ -23,11 +23,8 @@ namespace CountriesApi.Infrastructure.Extensions
             services.Configure<DatabaseSettings>(
                 configuration.GetSection(DatabaseSettings.SectionName));
 
-            services.AddDbContext<AppDbContext>((serviceProvider, options) =>
-            {
-                var databaseSettings = configuration.GetSection(DatabaseSettings.SectionName).Get<DatabaseSettings>();
-                options.UseSqlServer("DatabaseSettings.ConnectionString");
-            });
+            services.AddDbContext<AppDbContext>((_, options) =>
+            options.UseSqlServer(configuration.GetSection(DatabaseSettings.SectionName).Get<DatabaseSettings>().ConnectionString));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IReposistory<Country>, CountryRepository>();
