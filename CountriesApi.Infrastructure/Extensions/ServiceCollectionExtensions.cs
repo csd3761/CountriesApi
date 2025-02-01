@@ -21,11 +21,11 @@ namespace CountriesApi.Infrastructure.Extensions
             IConfiguration configuration)
         {
             services.Configure<DatabaseSettings>(
-                configuration.GetSection("DatabaseSettings.ConnectionString"));
+                configuration.GetSection(DatabaseSettings.SectionName));
 
             services.AddDbContext<AppDbContext>((serviceProvider, options) =>
             {
-                var databaseSettings = configuration.GetSection("DatabaseSettings.ConnectionString").Get<DatabaseSettings>();
+                var databaseSettings = configuration.GetSection(DatabaseSettings.SectionName).Get<DatabaseSettings>();
                 options.UseSqlServer("DatabaseSettings.ConnectionString");
             });
 

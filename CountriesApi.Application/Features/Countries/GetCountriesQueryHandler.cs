@@ -1,5 +1,7 @@
 ﻿using System.Net.Http.Json;
 using CountriesApi.Application.Features.Countries.Dtos;
+using CountriesApi.Domain.Entites;
+using CountriesApi.Domain.Interfaces;
 using MediatR;
 
 namespace CountriesApi.Application.Features.Countries
