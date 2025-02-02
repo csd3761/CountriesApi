@@ -91,16 +91,7 @@ namespace CountriesApi.Presentation
             builder.Services.AddScoped<IDatabase>(sp =>
                 sp.GetRequiredService<IConnectionMultiplexer>().GetDatabase());
 
-            // Add HealthChecks
             builder.Services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("Database");
-            //builder.Services.AddHealthChecks()
-            //    .AddRedis(
-            //        "redis-15021.c251.east-us-mz.azure.redns.redis-cloud.com:15021,user=default,password=dwdqNKmXlmSWm64n2lynVKndOKFV0DBv",
-            //        name: "redis",
-            //        failureStatus: HealthStatus.Unhealthy,
-            //        tags: new[] { "database" }
-            //    );
-
 
 
             builder.Services.AddControllers();
@@ -124,23 +115,7 @@ namespace CountriesApi.Presentation
 
             app.UseAuthorization();
 
-
             app.MapControllers();
-
-            //app.MapHealthChecks("/health");
-            app.MapGet("/health", async (IConnectionMultiplexer redis) =>
-            {
-                try
-                {
-                    var db = redis.GetDatabase();
-                    await db.PingAsync();
-                    return Results.Ok("Healthy");
-                }
-                catch
-                {
-                    return Results.StatusCode(503);
-                }
-            });
 
             app.Run();
         }
