@@ -25,6 +25,7 @@ namespace CountriesApi.Presentation
 
             // Add MediatR
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetSecondLargestNumberQuery).Assembly));
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
             // Add Validators
             builder.Services.AddValidatorsFromAssemblyContaining<GetSecondLargestNumberQueryValidator>();
@@ -38,9 +39,9 @@ namespace CountriesApi.Presentation
             builder.Host.UseSerilog();
 
             // Register Behaviors
+            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
-            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 
             // Add services to the container.
             builder.Services.AddHttpClient("CountriesClient", client =>
@@ -48,8 +49,8 @@ namespace CountriesApi.Presentation
                 client.BaseAddress = new Uri("https://restcountries.com/v3.1/");  // TODO Use Options Pattern to use this one instead of hardcoded uri
             });
 
-                    builder.Services.Configure<RedisSettings>(
-            builder.Configuration.GetSection(RedisSettings.SectionName));
+            builder.Services.Configure<RedisSettings>(
+                builder.Configuration.GetSection(RedisSettings.SectionName));
 
             builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
             {

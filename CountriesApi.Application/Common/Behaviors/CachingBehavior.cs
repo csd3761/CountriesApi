@@ -34,14 +34,11 @@ namespace CountriesApi.Application.Common.Behaviors
 
             var response = await next();
 
-            if (response != null)
+            // only cache non empty results
+            if (response is IEnumerable<object> enumerable && enumerable.Any())
             {
                 var expiry = TimeSpan.FromMinutes(_redisSettings.CacheDurationMinutes);
-                await redis.StringSetAsync(
-                    cacheKey,
-                    JsonConvert.SerializeObject(response),
-                    expiry
-                );
+                await redis.StringSetAsync(cacheKey, JsonConvert.SerializeObject(response), expiry);
             }
 
             return response;
