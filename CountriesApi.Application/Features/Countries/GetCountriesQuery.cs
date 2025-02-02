@@ -1,9 +1,11 @@
-﻿using MediatR;
+﻿using CountriesApi.Application.Common.Interfaces;
+using MediatR;
 
 namespace CountriesApi.Application.Features.Countries
 {
-    public class GetCountriesQuery : IRequest<List<CountryResponse>>
+    public class GetCountriesQuery : IRequest<List<CountryResponse>>, ICacheableQuery
     {
+        public string CacheKey => "CountriesCache";
     }
 
     public class CountryResponse

@@ -11,5 +11,6 @@ namespace CountriesApi.Domain.Configuration
         public const string SectionName = "RedisSettings";
         public string ConnectionString { get; set; }
         public int CacheDurationMinutes { get; set; }
+        public TimeSpan CacheDuration => TimeSpan.FromMinutes(CacheDurationMinutes);
     }
 }
