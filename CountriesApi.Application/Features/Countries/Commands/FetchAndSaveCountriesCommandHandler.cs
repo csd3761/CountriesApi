@@ -8,13 +8,15 @@ using CountriesApi.Application.Features.Countries.Dtos;
 using CountriesApi.Domain.Entites;
 using CountriesApi.Domain.Interfaces;
 using MediatR;
+using StackExchange.Redis;
 
 namespace CountriesApi.Application.Features.Countries.Commands
 {
     public class FetchAndSaveCountriesCommandHandler(
     IHttpClientFactory httpClientFactory,
     IReposistory<Country> countryRepository,
-    IUnitOfWork unitOfWork) : IRequestHandler<FetchAndSaveCountriesCommand>
+    IUnitOfWork unitOfWork,
+    IDatabase redis) : IRequestHandler<FetchAndSaveCountriesCommand>
     {
         public async Task Handle(
             FetchAndSaveCountriesCommand request,
@@ -36,6 +38,9 @@ namespace CountriesApi.Application.Features.Countries.Commands
             // Save to database
             await countryRepository.AddRangeAsync(countryEntities);
             await unitOfWork.CommitAsync(cancellationToken);
+
+            // invalidate cache after saving new data
+            await redis.KeyDeleteAsync("CountriesCache");
         }
     }
 }

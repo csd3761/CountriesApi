@@ -11,6 +11,8 @@ using CountriesApi.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using StackExchange.Redis;
 
 namespace CountriesApi.Infrastructure.Extensions
 {
@@ -25,6 +27,17 @@ namespace CountriesApi.Infrastructure.Extensions
 
             services.AddDbContext<AppDbContext>((_, options) =>
             options.UseSqlServer(configuration.GetSection(DatabaseSettings.SectionName).Get<DatabaseSettings>().ConnectionString));
+
+            //services.Configure<RedisSettings>(
+            //    configuration.GetSection("RedisSettings"));
+
+            //services.AddSingleton<IConnectionMultiplexer>(sp =>
+            //{
+            //    var redisSettings = sp.GetRequiredService<IOptions<RedisSettings>>().Value;
+            //    var configOptions = ConfigurationOptions.Parse(redisSettings.ConnectionString, true);
+            //    configOptions.AbortOnConnectFail = false;
+            //    return ConnectionMultiplexer.Connect(configOptions);
+            //});
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IReposistory<Country>, CountryRepository>();
